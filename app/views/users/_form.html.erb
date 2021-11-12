@@ -1,0 +1,61 @@
+<%= form_with(model: user) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pan_card_no %>
+    <%= form.text_field :pan_card_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :aadhar_card_no %>
+    <%= form.number_field :aadhar_card_no %>
+  </div>
+
+  <div>
+    <%= form.fields_for :user_acc_detail do |user_acc_detail_form| %>
+      <div class="field">
+        <%= label_tag "Account number" %>
+        <%= user_acc_detail_form.number_field :account_number %>
+      </div>
+
+      <div class="field">
+        <%= label_tag "IFSC" %>
+        <%= user_acc_detail_form.text_field :ifsc %>
+      </div>
+
+      <div class="field">
+        <%= label_tag "Cash Inflow" %>
+        <%= user_acc_detail_form.number_field :inflow %>
+      </div>
+
+      <div class="field">
+        <%= label_tag "Cash Outflow" %>
+        <%= user_acc_detail_form.number_field :outflow %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
