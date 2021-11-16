@@ -1,31 +1,32 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Credi Card Applications</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th>Credit Limit</th>
-      <th>System Recommendation</th>
-      <th colspan="3">Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
+<div class="fluid-container">
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= user.email %></td>
-        <td><%= user.credibility_detail.credit_limit %></td>
-        <td><%= user.credibility_detail.eligibility_status %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Approve', update_eligibility_status_path(id: user, status: 'approve') %></td>
-        <td><%= link_to 'Reject', update_eligibility_status_path(id: user, status: 'reject') %></td>
+        <th>Email</th>
+        <th>Credit Limit</th>
+        <th>System Recommendation</th>
+        <th colspan="3" class="text-center">Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= user.credibility_detail.credit_limit %></td>
+          <td><%= user.credibility_detail.eligibility_status %></td>
+          <td><%= link_to 'Show', user, class: 'btn btn-info' %></td>
+          <td><%= link_to 'Approve', update_eligibility_status_path(id: user, status: 'approve'), class: 'btn btn-success' %></td>
+          <td><%= link_to 'Reject', update_eligibility_status_path(id: user, status: 'reject'), class: 'btn btn-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 
-<%= link_to 'Apply Credit Card', new_user_path %>
+<%= link_to 'Apply Credit Card', new_user_path, class: 'btn btn-primary' %>
